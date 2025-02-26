@@ -72,10 +72,10 @@ function createSelectionDiv(rect) {
 	addHoverEffect(searchSpan);
 
 	searchSpan.addEventListener("click", () => {
-		window.open(
-			`https://www.google.com/search?q=${highlightedText}`,
-			"_blank"
-		);
+		chrome.runtime.sendMessage({
+			action: "search",
+			query: highlightedText,
+		});
 	});
 
 	div.appendChild(searchSpan);
@@ -141,19 +141,19 @@ function checkTextHighlight(e) {
 		return;
 	}
 
+	removeSelectionDiv();
+
 	// Check if the user has highlighted some text and create the selection div if needed
 
 	const selection = window.getSelection();
 
 	if (selection.toString().length > 0) {
-		removeSelectionDiv();
 		highlightedText = selection.toString();
 
 		selectionDiv = createSelectionDiv(
 			selection.getRangeAt(0).getBoundingClientRect()
 		);
 	} else {
-		removeSelectionDiv();
 		highlightedText = "";
 	}
 }
