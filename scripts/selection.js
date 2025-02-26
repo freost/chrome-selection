@@ -35,20 +35,16 @@ function createSelectionDiv(rect) {
 
 	const div = document.createElement("div");
 
-	const left = rect.left + window.scrollX;
-	const top = rect.top + window.scrollY - 44;
-
 	div.style.cssText = `
     z-index: 1000;
     position: absolute;
     display: block;
-    top: ${top}px;
-    left: ${left}px;
     font-size: 14px;
     padding: 2px;
     border-radius: 5px;
     background-color: rgba(0, 0, 0, 0.7);
     backdrop-filter: blur(2px);
+	box-shadow: 2px 11px 10px -6px rgba(0,0,0,0.5);
     color: white;
 	`;
 
@@ -110,7 +106,14 @@ function createSelectionDiv(rect) {
 
 	div.appendChild(copySpan);
 
+	// Append the div to the body
+
 	document.body.appendChild(div);
+
+	// Position the div
+
+	div.style.top = rect.top - div.offsetHeight - 8 + window.scrollY + "px";
+	div.style.left = rect.left - div.offsetWidth / 2 + rect.width / 2 + "px";
 
 	return div;
 }
@@ -122,7 +125,7 @@ function createSelectionDiv(rect) {
  */
 function removeSelectionDiv() {
 	if (selectionDiv) {
-		document.body.removeChild(selectionDiv);
+		selectionDiv.remove();
 		selectionDiv = null;
 	}
 }
