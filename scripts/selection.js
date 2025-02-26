@@ -33,10 +33,10 @@ function addHoverEffect(target) {
 function createSelectionDiv(rect) {
 	// Create the div
 
+	const div = document.createElement("div");
+
 	const left = rect.left + window.scrollX;
 	const top = rect.top + window.scrollY - 44;
-
-	const div = document.createElement("div");
 
 	div.style.cssText = `
     z-index: 1000;
@@ -110,6 +110,8 @@ function createSelectionDiv(rect) {
 
 	div.appendChild(copySpan);
 
+	document.body.appendChild(div);
+
 	return div;
 }
 
@@ -144,24 +146,15 @@ function checkTextHighlight(e) {
 	const selection = window.getSelection();
 
 	if (selection.toString().length > 0) {
-		if (selectionDiv) {
-			document.body.removeChild(selectionDiv);
-			selectionDiv = null;
-		}
-
+		removeSelectionDiv();
 		highlightedText = selection.toString();
 
 		selectionDiv = createSelectionDiv(
 			selection.getRangeAt(0).getBoundingClientRect()
 		);
-		document.body.appendChild(selectionDiv);
 	} else {
+		removeSelectionDiv();
 		highlightedText = "";
-
-		if (selectionDiv) {
-			document.body.removeChild(selectionDiv);
-			selectionDiv = null;
-		}
 	}
 }
 
