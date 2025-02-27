@@ -3,6 +3,7 @@
     "description": "Search or copy the selected text.",
     "version": "0.1.0",
     "manifest_version": 3,
+    "default_locale": "en",
     "icons": {
         "16": "images/icon-16.png",
         "32": "images/icon-32.png",
@@ -19,8 +20,7 @@
                 "scripts/selection.js"
             ],
             "matches": [
-                "http://*/*",
-                "https://*/*"
+                "*://*/*"
             ]
         }
     ]

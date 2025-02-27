@@ -62,7 +62,7 @@
 
 		const searchSpan = document.createElement("span");
 
-		searchSpan.textContent = "Search";
+		searchSpan.textContent = chrome.i18n.getMessage("search");
 
 		searchSpan.style.cssText = buttonStyles;
 
@@ -94,7 +94,7 @@
 
 		const copySpan = document.createElement("span");
 
-		copySpan.textContent = "Copy";
+		copySpan.textContent = chrome.i18n.getMessage("copy");
 
 		copySpan.style.cssText = buttonStyles;
 
