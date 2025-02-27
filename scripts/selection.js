@@ -40,7 +40,8 @@
 		z-index: 1000;
 		position: absolute;
 		display: block;
-		font-size: 14px;
+		font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
+		font-size: 14px !important;
 		padding: 2px;
 		border-radius: 5px;
 		background-color: rgba(0, 0, 0, 0.7);
