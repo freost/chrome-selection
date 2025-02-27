@@ -1,3 +1,3 @@
 # Selection
 
-A simple Chrome extension that replicates the "search / copy" slection tooltip from Opera.
+A simple Chrome extension that replicates the "search / copy" selection tooltip from Opera.
