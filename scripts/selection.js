@@ -45,8 +45,8 @@
 		border-radius: 5px;
 		background-color: rgba(0, 0, 0, 0.7);
 		backdrop-filter: blur(2px);
-		box-shadow: 2px 11px 10px -6px rgba(0,0,0,0.5);
-		color: white;
+		box-shadow: 2px 11px 10px -6px rgba(0, 0, 0, 0.5);
+		color: rgb(255, 255, 255);
 		`;
 
 		// Button styles
