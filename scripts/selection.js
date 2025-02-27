@@ -81,11 +81,10 @@
 
 		const divider = document.createElement("span");
 
-		divider.textContent = "|";
-
 		divider.style.cssText = `
-		opacity: 0.5;
-		padding: 2px;
+		margin-left: 4px;
+		margin-right: 4px;
+		border-left: 1px solid rgba(255, 255, 255, 0.25);
 		`;
 
 		div.appendChild(divider);
