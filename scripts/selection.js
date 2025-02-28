@@ -37,7 +37,7 @@
 		const div = document.createElement("div");
 
 		div.style.cssText = `
-		z-index: 1000;
+		z-index: 99999;
 		position: absolute;
 		display: block;
 		font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
