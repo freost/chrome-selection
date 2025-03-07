@@ -32,16 +32,22 @@
 	 * @returns {HTMLDivElement}
 	 */
 	function createSelectionDiv(rect) {
-		// Create the div
+		// Create the div and the shadow root
 
 		const div = document.createElement("div");
+		const shadowRoot = div.attachShadow({ mode: "open" });
 
-		div.style.cssText = `
+		// Create the popover div
+
+		const popover = document.createElement("div");
+
+		popover.style.cssText = `
+		all: initial;
 		z-index: 99999;
 		position: absolute;
 		display: block;
-		font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
-		font-size: 14px !important;
+		font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+		font-size: 14px;
 		padding: 2px;
 		border-radius: 5px;
 		background-color: rgba(0, 0, 0, 0.7);
@@ -76,7 +82,7 @@
 			});
 		});
 
-		div.appendChild(searchSpan);
+		popover.appendChild(searchSpan);
 
 		// Create divider
 
@@ -88,7 +94,7 @@
 		border-left: 1px solid rgba(255, 255, 255, 0.25);
 		`;
 
-		div.appendChild(divider);
+		popover.appendChild(divider);
 
 		// Create the copy span
 
@@ -105,17 +111,22 @@
 			removeSelectionDiv();
 		});
 
-		div.appendChild(copySpan);
+		popover.appendChild(copySpan);
+
+		// Append the popover to the shadow root
+
+		shadowRoot.appendChild(popover);
 
 		// Append the div to the body
 
 		document.body.appendChild(div);
 
-		// Position the div
+		// Position the popover
 
-		div.style.top = rect.top - div.offsetHeight - 8 + window.scrollY + "px";
-		div.style.left =
-			rect.left - div.offsetWidth / 2 + rect.width / 2 + "px";
+		popover.style.top =
+			rect.top - popover.offsetHeight - 8 + window.scrollY + "px";
+		popover.style.left =
+			rect.left - popover.offsetWidth / 2 + rect.width / 2 + "px";
 
 		return div;
 	}
@@ -140,9 +151,9 @@
 	 * @returns {void}
 	 */
 	function checkTextHighlight(e) {
-		// Check if the event target is a child of the selection div to prevent it from being removed
+		// Check if the event target is the selection div to prevent it from being removed
 
-		if (e.target.parentElement === selectionDiv) {
+		if (e.target === selectionDiv) {
 			return;
 		}
 
