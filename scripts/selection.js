@@ -123,10 +123,24 @@
 
 		// Position the popover
 
-		popover.style.top =
-			rect.top - popover.offsetHeight - 8 + window.scrollY + "px";
-		popover.style.left =
-			rect.left - popover.offsetWidth / 2 + rect.width / 2 + "px";
+		const margin = 8;
+
+		let top = rect.top - popover.offsetHeight - margin;
+
+		if (top < 0) {
+			top = rect.bottom + margin;
+		}
+
+		const left = Math.max(
+			margin,
+			Math.min(
+				rect.left - popover.offsetWidth / 2 + rect.width / 2,
+				window.innerWidth - popover.offsetWidth - margin,
+			),
+		);
+
+		popover.style.top = top + window.scrollY + "px";
+		popover.style.left = left + window.scrollX + "px";
 
 		return div;
 	}
@@ -167,7 +181,7 @@
 			highlightedText = selection.toString();
 
 			selectionDiv = createSelectionDiv(
-				selection.getRangeAt(0).getBoundingClientRect()
+				selection.getRangeAt(0).getBoundingClientRect(),
 			);
 		} else {
 			highlightedText = "";
