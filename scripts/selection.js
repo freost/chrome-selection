@@ -177,7 +177,7 @@
 
 		const selection = window.getSelection();
 
-		if (selection.toString().length > 0) {
+		if (selection.toString().trim().length > 0) {
 			highlightedText = selection.toString();
 
 			selectionDiv = createSelectionDiv(
